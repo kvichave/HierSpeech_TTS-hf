@@ -57,8 +57,8 @@ def tts(text,
     np.random.seed(random_seed)
 
     text_len = len(text)
-    if text_len > 200:
-        raise gr.Error("Text length limited to 200 characters for this demo. Current text length is " + str(text_len))
+    if text_len > 200000:
+        raise gr.Error("Text length limited to 200000 characters for this demo. Current text length is " + str(text_len))
        
     else:
         text = text_to_sequence(str(text), ["english_cleaners2"])
@@ -210,8 +210,8 @@ def main():
     denoiser.eval()
 
     demo_play = gr.Interface(fn = tts,
-                     inputs = [gr.Textbox(max_lines=6, label="Input Text", value="HierSpeech is a zero shot speech synthesis model, which can generate high-quality audio", info="Up to 200 characters"), 
-                               gr.Audio(type='filepath', value="./example/3_rick_gt.wav"), 
+                     inputs = [gr.Textbox(max_lines=6, label="Input Text", value="HierSpeech is a zero shot speech synthesis model, which can generate high-quality audio", info="Up to 200000 characters"), 
+                               gr.Audio(type='filepath', value="./example/text_to_speech.wav"), 
                                gr.Slider(0,1,0.333), 
                                gr.Slider(0,1,0.333), 
                                gr.Slider(0,1,1.0), 
